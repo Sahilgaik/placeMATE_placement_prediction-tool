@@ -1,0 +1,201 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Compiled and minified CSS -->
+    <!-- Import jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Import Materialize CSS -->
+  <script src="js/materialize.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <title>GameGuidez</title>
+</head>
+<body class="grey lighten-3">
+
+  <!-- NAVBAR -->
+  <nav class="z-depth-0 grey lighten-4">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">
+        <img src="img\Screenshot 2024-05-07 090306.jpg" style="width: 180px; margin-top: 10px;">
+cf      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li class="logged-in" style="display: none;">
+          <a href="#" class="black-text modal-trigger" data-target="modal-account">Account</a>
+        </li>
+        <li class="logged-in" style="display: none;">
+          <a href="#" class="black-text" id="logout">Logout</a>
+        </li>
+        <li class="admin"style="display: none;">
+          <a href="#" class="black-text modal-trigger" data-target="modal-create">Create Oppotunities</a>
+        </li>
+        <li class="logged-out" style="display: none;">
+          <a href="#" class="black-text modal-trigger" data-target="modal-login">Login</a>
+        </li>
+
+        <li class="logged-out" style="display: none;">
+          <a href="#" data-target="dropdown" class="black-text dropdown-trigger">Sign up</a>
+          <ul class="dropdown-content" id="dropdown">
+            <li><a href="#" class="black-text modal-trigger" data-target="modal-signupRE">T & P</a></li>
+            <li><a href="#" class="black-text modal-trigger" data-target="modal-signupSTU">Student</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+<!-- ADMIN ACTIONS -->
+<form class="center-align admin-actions admin" style="margin: 40px auto; max-width: 300px;display: none;">
+  <input type="email" placeholder="User email" id="admin-email" required />
+  <button class="btn-small yellow darken-2 z-depth-0">Make admin /  add recruiter </button>
+</form>
+
+
+  <!-- SIGN UP MODAL for Student -->
+  <div id="modal-signupSTU" class="modal">
+    <div class="modal-content">
+      <h4>STUDENT login</h4><br />
+      <form id="signup-form-stu">
+        <div class="input-field">
+          <input type="email" id="signup-email-stu" required />
+          <label for="signup-email-stu">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password-stu" required />
+          <label for="signup-password-stu">Choose password</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="signup-bio-stu" required />
+          <label for="signup-bio-stu">One Line Bio for student</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+        <p class="error pink-text center-align"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- SIGN UP MODAL for Recruiter -->
+  <div id="modal-signupRE" class="modal">
+    <div class="modal-content">
+      <h4>RECRUITER login</h4><br />
+      <form id="signup-form-re">
+        <div class="input-field">
+          <input type="email" id="signup-email-re" required />
+          <label for="signup-email-re">ORGs Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password-re" required />
+          <label for="signup-password-re">Choose password</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="signup-bio-re" required />
+          <label for="signup-bio-re">company's business (domain) </label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+        <p class="error pink-text center-align"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+        <p class="error pink-text center-align"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ACCOUNT MODAL -->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Account details</h4><br />
+      <div class="account-details"></div>
+    </div>
+  </div>
+
+  <!-- CREATE GUIDE MODAL -->
+  <div id="modal-create" class="modal">
+    <div class="modal-content">
+      <h4>Create Opportunities</h4><br />
+      <form id="create-form">
+        <div class="input-field">
+          <input type="text" id="title" required>
+          <label for="title">company name</label>
+        </div>
+        <div class="input-field">
+          <textarea id="content" class="materialize-textarea" required></textarea>
+          <label for="content">Job role </label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Create</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- GUIDE LIST the class guides here could be ur recruiter in collections CLASS: RECRUITERS  -->
+  <div style="width: 100%;">
+
+  <div class="container" style="width:65% ;height: 100%; float: left; background: grey;">
+    <ul class="collapsible z-depth-0 recruiters" style="border: none;"> 
+      
+    </ul>
+  </div>
+
+  <div style="margin-left: 50%; margin-top: 40px; height: 100%; background: blanchedalmond;"> 
+    <button onclick="window.location.href = 'http://127.0.0.1:5000/';" style="position: absolute; top: 50%; left: 85%; transform: translate(-50%, -50%); background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Try your placement CHANCES</button>    
+  </div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-functions.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDj9ky9E47nJ-fSmJtRyF3uTm6bRqUhF0c",
+      authDomain: "nn-game-guidez-facbb.firebaseapp.com",
+      projectId: "nn-game-guidez-facbb",
+      storageBucket: "nn-game-guidez-facbb.appspot.com",
+      messagingSenderId: "364585900496",
+      appId: "1:364585900496:web:079e363ff4263d775481d5",
+      measurementId: "G-B3V6HYTE2Z"
+    };
+    firebase.initializeApp(config);
+
+    // make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();// this allows us to interact with the firebase methods
+    const functions = firebase.functions();
+
+    // update firestore settings
+    db.settings({ timestampsInSnapshots: true });
+  </script>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var drop = document.querySelectorAll('.dropdown-trigger');
+      M.Dropdown.init(drop, {
+        coverTrigger: false
+      });
+    });
+  </script>
+
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/index.js"></script>
+</body>
+</html>
